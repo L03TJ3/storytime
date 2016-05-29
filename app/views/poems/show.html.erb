@@ -1,0 +1,13 @@
+<h4>
+  <%= @poem.title %>
+  <%= link_to "Delete", author_path( @poem ),
+      method: :delete,
+      data: { confirm: "Are you sure?" },
+      class: "btn btn-default" %>
+ <%= link_to "Edit", edit_author_path( @poem ), class: "btn btn-default" %>
+</h4>
+<%= simple_format @poem.content %>
+
+<%= @poem.tags.each do |tag| %>
+  <div class="chip tags z-depth-2"><%= tag.name %></div>
+<% end %>

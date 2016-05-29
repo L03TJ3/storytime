@@ -1,7 +1,7 @@
 class PoemsController < ApplicationController
 
   def index
-    @poems = Poems.all.sort_by { |poem| poem.title }
+    @poems = Poem.all.sort_by { |poem| poem.title }
   end
 
   def show
@@ -18,7 +18,7 @@ class PoemsController < ApplicationController
     @tags = Poem.tagging(@poem.content)
 
     if @poem.save
-      @poem.split( ", " ).each do |tag_name|
+      @tags.split( ", " ).each do |tag_name|
         if tag = Tag.find_by( name: tag_name )
           PoemTagging.create( poem: @poem, tag: tag )
         end

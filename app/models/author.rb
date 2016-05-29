@@ -1,4 +1,5 @@
 class Author < ActiveRecord::Base
+  has_many :poems
   has_many :author_taggings
   has_many :tags, through: :author_taggings
 
