@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529181803) do
+ActiveRecord::Schema.define(version: 20160529181921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "author_taggings", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "author_taggings", ["author_id"], name: "index_author_taggings_on_author_id", using: :btree
+  add_index "author_taggings", ["tag_id"], name: "index_author_taggings_on_tag_id", using: :btree
 
   create_table "authors", force: :cascade do |t|
     t.string   "name"
@@ -29,4 +39,6 @@ ActiveRecord::Schema.define(version: 20160529181803) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "author_taggings", "authors"
+  add_foreign_key "author_taggings", "tags"
 end
