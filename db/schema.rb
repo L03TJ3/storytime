@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529181921) do
+ActiveRecord::Schema.define(version: 20160529223854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,28 @@ ActiveRecord::Schema.define(version: 20160529181921) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "poem_taggings", force: :cascade do |t|
+    t.integer  "poem_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "poem_taggings", ["poem_id"], name: "index_poem_taggings_on_poem_id", using: :btree
+  add_index "poem_taggings", ["tag_id"], name: "index_poem_taggings_on_tag_id", using: :btree
+
+  create_table "poems", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "metaphor"
+    t.datetime "date"
+    t.integer  "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "poems", ["author_id"], name: "index_poems_on_author_id", using: :btree
+
   create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -41,4 +63,7 @@ ActiveRecord::Schema.define(version: 20160529181921) do
 
   add_foreign_key "author_taggings", "authors"
   add_foreign_key "author_taggings", "tags"
+  add_foreign_key "poem_taggings", "poems"
+  add_foreign_key "poem_taggings", "tags"
+  add_foreign_key "poems", "authors"
 end
