@@ -8,4 +8,19 @@ class AuthorsController < ApplicationController
     @author = Author.find( params[:id] )
   end
 
+
+  def new
+    @author = Author.new
+  end
+
+  def create
+  end
+
+
+
+  private
+
+    def author_params
+      params.require( :author ).permit( :name, :bio)
+    end
 end
