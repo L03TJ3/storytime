@@ -15,7 +15,7 @@ class PoemsController < ApplicationController
 
   def create
     @poem = Poem.new( poem_params )
-    @tags = Poem.tagging(@poem.content)
+    @tags = Poem.tagging( @poem.content )
 
     if @poem.save
       @tags.each do |tag_name|
@@ -32,7 +32,7 @@ class PoemsController < ApplicationController
   private
 
     def poem_params
-      params.require( :poem ).permit( :title, :content, :metaphore, :date,
+      params.require( :poem ).permit( :title, :content, :metaphor, :date,
                                                                     :author_id )
     end
 end

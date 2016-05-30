@@ -8,6 +8,6 @@
 </h4>
 <%= simple_format @poem.content %>
 
-<%= @poem.tags.each do |tag| %>
+<% @poem.tags.each do |tag| %>
   <div class="chip tags z-depth-2"><%= tag.name %></div>
 <% end %>

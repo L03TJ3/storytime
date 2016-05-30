@@ -1,5 +1,13 @@
-<h1>List of all the stories</h1>
+<h1>List of all the poems</h1>
 
 <% @stories.each do |story| %>
-    <p><%= link_to story.title, story %></p>
+  <div class="all_overview">
+    <p>
+      <%= link_to story.title, story %>
+      (Description: <%= story.description %> - Author: <%= story.author.name %>)
+      <% story.tags.each do |tag| %>
+        <div class="chip tags z-depth-2"><%= tag.name %></div>
+      <% end %>
+    </p>
+  </div>
 <% end %>

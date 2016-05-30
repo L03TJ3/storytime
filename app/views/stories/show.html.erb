@@ -8,6 +8,6 @@
 </h4>
 <%= simple_format @story.content %>
 
-<%= @story.tags.each do |tag| %>
+<% @story.tags.each do |tag| %>
   <div class="chip tags z-depth-2"><%= tag.name %></div>
 <% end %>

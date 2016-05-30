@@ -1,5 +1,13 @@
 <h1>List of all the poems</h1>
 
 <% @poems.each do |poem| %>
-    <p><%= link_to poem.title, poem %></p>
+  <div class="all_overview">
+    <p>
+      <%= link_to poem.title, poem %>
+      (Methaphor: <%= poem.metaphor %> - Author: <%= poem.author.name %>)
+      <% poem.tags.each do |tag| %>
+        <div class="chip tags z-depth-2"><%= tag.name %></div>
+      <% end %>
+    </p>
+  </div>
 <% end %>

@@ -8,7 +8,7 @@
 </h4>
 <%= simple_format @author.bio %>
 
-<%= @author.tags.each do |tag| %>
+<% @author.tags.each do |tag| %>
   <div class="chip tags z-depth-2"><%= tag.name %></div>
 <% end %>
 
@@ -19,7 +19,3 @@
 
 <%= link_to "Add new Story", new_story_path( author_id: @author.id),
                                            class: "btn btn-default" %>
-
-<% poem = @author.poems.sort_by { |poem| poem.metaphore } %>
-
-<%= render poem %>
