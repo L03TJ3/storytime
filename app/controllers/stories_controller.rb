@@ -14,9 +14,11 @@ class StoriesController < ApplicationController
 
   def create
     @story = Story.new( story_params )
-    @tags = Story.tagging(@story.content)
+    @tags = Story.tagging( @story.content )
 
     if @story.save
+      # Iterates through the @tags array and for every tag
+      # Creates a record in the join table with story_id and tag_id
       @tags.each do |tag_name|
         if tag = Tag.find_by( name: tag_name )
           StoryTagging.create( story: @story, tag: tag )

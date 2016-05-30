@@ -18,6 +18,8 @@ class PoemsController < ApplicationController
     @tags = Poem.tagging( @poem.content )
 
     if @poem.save
+      # Iterates through the @tags array and for every tag
+      # Creates a record in the join table with poem_id and tag_id
       @tags.each do |tag_name|
         if tag = Tag.find_by( name: tag_name )
           PoemTagging.create( poem: @poem, tag: tag )
@@ -33,6 +35,6 @@ class PoemsController < ApplicationController
 
     def poem_params
       params.require( :poem ).permit( :title, :content, :metaphor, :date,
-                                                                    :author_id )
+                                                                   :author_id )
     end
 end
