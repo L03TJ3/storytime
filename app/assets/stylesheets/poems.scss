@@ -1,6 +1,9 @@
 // Place all the styles related to the Poems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Overrides materialize style for select box
+// Date selector did not show otherwise
 select {
   display: block;
 }

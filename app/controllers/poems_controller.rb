@@ -15,9 +15,11 @@ class PoemsController < ApplicationController
 
   def create
     @poem = Poem.new( poem_params )
-    @tags = Poem.tagging(@poem.content)
+    @tags = Poem.tagging( @poem.content )
 
     if @poem.save
+      # Iterates through the @tags array and for every tag
+      # Creates a record in the join table with poem_id and tag_id
       @tags.each do |tag_name|
         if tag = Tag.find_by( name: tag_name )
           PoemTagging.create( poem: @poem, tag: tag )
@@ -29,10 +31,17 @@ class PoemsController < ApplicationController
     end
   end
 
+  def destroy
+    @poem = Poem.find( params[:id] )
+    author_id = @poem.author_id
+    @poem.destroy
+    redirect_to author_path( author_id )
+  end
+
   private
 
     def poem_params
-      params.require( :poem ).permit( :title, :content, :metaphore, :date,
-                                                                    :author_id )
+      params.require( :poem ).permit( :title, :content, :metaphor, :date,
+                                                                   :author_id )
     end
 end

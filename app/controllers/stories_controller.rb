@@ -14,9 +14,11 @@ class StoriesController < ApplicationController
 
   def create
     @story = Story.new( story_params )
-    @tags = Story.tagging(@story.content)
+    @tags = Story.tagging( @story.content )
 
     if @story.save
+      # Iterates through the @tags array and for every tag
+      # Creates a record in the join table with story_id and tag_id
       @tags.each do |tag_name|
         if tag = Tag.find_by( name: tag_name )
           StoryTagging.create( story: @story, tag: tag )
@@ -28,10 +30,17 @@ class StoriesController < ApplicationController
     end
   end
 
+  def destroy
+    @story = Story.find( params[:id] )
+    author_id = @story.author_id
+    @story.destroy
+    redirect_to author_path( author_id )
+  end
+
   private
 
     def story_params
       params.require( :story ).permit( :title, :content, :description, :date,
-                                                                        :author_id )
+                                       :author_id )
     end
 end
