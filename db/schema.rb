@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529223854) do
+ActiveRecord::Schema.define(version: 20160530121301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,28 @@ ActiveRecord::Schema.define(version: 20160529223854) do
 
   add_index "poems", ["author_id"], name: "index_poems_on_author_id", using: :btree
 
+  create_table "stories", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "description"
+    t.datetime "date"
+    t.integer  "author_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "stories", ["author_id"], name: "index_stories_on_author_id", using: :btree
+
+  create_table "story_taggings", force: :cascade do |t|
+    t.integer  "story_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "story_taggings", ["story_id"], name: "index_story_taggings_on_story_id", using: :btree
+  add_index "story_taggings", ["tag_id"], name: "index_story_taggings_on_tag_id", using: :btree
+
   create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -66,4 +88,7 @@ ActiveRecord::Schema.define(version: 20160529223854) do
   add_foreign_key "poem_taggings", "poems"
   add_foreign_key "poem_taggings", "tags"
   add_foreign_key "poems", "authors"
+  add_foreign_key "stories", "authors"
+  add_foreign_key "story_taggings", "stories"
+  add_foreign_key "story_taggings", "tags"
 end
