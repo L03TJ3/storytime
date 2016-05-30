@@ -6,7 +6,7 @@ by famous poets!
 How to get it up and running:
 First download zip and extract or do in terminal:
 
-* git clone git@github.com:L03TJ3/storytime.gi
+* git clone git@github.com:L03TJ3/storytime.git
 
 Build database:
 
@@ -17,6 +17,7 @@ Build database:
 * it can found in db/seeds.rb )
 
 Run server:
+* First just in case a bundle install (for materialize-sass gem)
 * rails s
 
 Navigate to localhost:3000
