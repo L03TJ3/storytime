@@ -18,7 +18,7 @@ class AuthorsController < ApplicationController
     @tags = Author.tagging(@author.bio)
 
     if @author.save
-      @tags.split( ", " ).each do |tag_name|
+      @tags.each do |tag_name|
         if tag = Tag.find_by( name: tag_name )
           AuthorTagging.create( author: @author, tag: tag )
         end
