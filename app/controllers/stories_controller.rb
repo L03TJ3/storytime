@@ -22,7 +22,7 @@ class StoriesController < ApplicationController
           StoryTagging.create( story: @story, tag: tag )
         end
       end
-      redirect_to poems_path
+      redirect_to stories_path
     else
       render 'new'
     end

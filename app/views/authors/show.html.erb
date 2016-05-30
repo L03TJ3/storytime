@@ -16,6 +16,10 @@
 
 <%= link_to "Add new Poem", new_poem_path( author_id: @author.id),
                                            class: "btn btn-default" %>
+
+<%= link_to "Add new Story", new_story_path( author_id: @author.id),
+                                           class: "btn btn-default" %>
+
 <% poem = @author.poems.sort_by { |poem| poem.metaphore } %>
 
 <%= render poem %>
