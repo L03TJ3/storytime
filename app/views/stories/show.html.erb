@@ -1,10 +1,9 @@
 <h4>
   <%= @story.title %>
-  <%= link_to "Delete", author_path( @story ),
+  <%= link_to "Delete", story_path( @story ),
       method: :delete,
       data: { confirm: "Are you sure?" },
       class: "btn btn-default" %>
- <%= link_to "Edit", edit_author_path( @story ), class: "btn btn-default" %>
 </h4>
 <%= simple_format @story.content %>
 

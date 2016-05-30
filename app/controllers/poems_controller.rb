@@ -31,6 +31,13 @@ class PoemsController < ApplicationController
     end
   end
 
+  def destroy
+    @poem = Poem.find( params[:id] )
+    author_id = @poem.author_id
+    @poem.destroy
+    redirect_to author_path( author_id )
+  end
+
   private
 
     def poem_params

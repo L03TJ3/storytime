@@ -30,6 +30,13 @@ class StoriesController < ApplicationController
     end
   end
 
+  def destroy
+    @story = Story.find( params[:id] )
+    author_id = @story.author_id
+    @story.destroy
+    redirect_to author_path( author_id )
+  end
+
   private
 
     def story_params

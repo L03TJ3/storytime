@@ -4,7 +4,9 @@
   <div class="all_overview">
     <p>
       <%= link_to story.title, story %>
-      (Description: <%= story.description %> - Author: <%= story.author.name %>)
+      (Description: <%= story.description %> - Author:
+      <%= link_to story.author.name, story.author %>)
+
       <% story.tags.each do |tag| %>
         <div class="chip tags z-depth-2"><%= tag.name %></div>
       <% end %>
