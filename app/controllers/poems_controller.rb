@@ -18,7 +18,7 @@ class PoemsController < ApplicationController
     @tags = Poem.tagging(@poem.content)
 
     if @poem.save
-      @tags.split( ", " ).each do |tag_name|
+      @tags.each do |tag_name|
         if tag = Tag.find_by( name: tag_name )
           PoemTagging.create( poem: @poem, tag: tag )
         end
