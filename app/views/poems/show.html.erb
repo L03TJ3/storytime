@@ -1,5 +1,5 @@
 <h4>
-  <%= @poem.title %>
+  <%= @poem.title %> by <%= @poem.author.name %>
   <%= link_to "Delete", poem_path( @poem ),
       method: :delete,
       data: { confirm: "Are you sure?" },
@@ -7,6 +7,13 @@
 </h4>
 <%= simple_format @poem.content %>
 
+<hr />
+
+<div style="font-style: italic;">
+  <%= @poem.metaphor %>
+</div>
+
+Tags:
 <% @poem.tags.each do |tag| %>
   <div class="chip tags z-depth-2"><%= tag.name %></div>
 <% end %>

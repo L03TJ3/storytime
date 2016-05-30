@@ -1,12 +1,18 @@
 <h4>
-  <%= @story.title %>
+  <%= @story.title %> by <%= @story.author.name %>
   <%= link_to "Delete", story_path( @story ),
       method: :delete,
       data: { confirm: "Are you sure?" },
       class: "btn btn-default" %>
 </h4>
 <%= simple_format @story.content %>
+<hr />
+<div style="font-style: italic;">
+  <%= @story.description %>
+</div>
 
+
+Tags:
 <% @story.tags.each do |tag| %>
   <div class="chip tags z-depth-2"><%= tag.name %></div>
 <% end %>
