@@ -23,7 +23,7 @@ class AuthorsController < ApplicationController
           AuthorTagging.create( author: @author, tag: tag )
         end
       end
-      redirect_to authors_path
+      redirect_to @author
     else
       render 'new'
     end
