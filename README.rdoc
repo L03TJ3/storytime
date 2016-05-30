@@ -4,21 +4,24 @@ This is my application StoryTime where you can store short stories and poems
 by famous poets!
 
 How to get it up and running:
+First download zip and extract or do in terminal:
 
-* Download zip and extract or do in terminal:
->> git clone git@github.com:L03TJ3/storytime.git
+* git clone git@github.com:L03TJ3/storytime.gi
 
-* Build database:
->> cd storytime
->> rake db:create
->> rake db:migrate
->> rake db:seed (For pre-defined keywords, if you want change the keywords
->> it can found in db/seeds.rb )
+Build database:
 
-* Run server:
->> rails s
+* cd storytime
+* rake db:create
+* rake db:migrate
+* rake db:seed (For pre-defined keywords, if you want change the keywords
+* it can found in db/seeds.rb )
 
-* Navigate to localhost:3000
+Run server:
+* rails s
+
+Navigate to localhost:3000
+
+ENJOY!
 
 Some notes:
   <tt> Before you can create a short story or poem, first create a author!</tt>
